@@ -97,20 +97,27 @@ Visit [Nx Cloud](https://nx.app/) to learn more.
 # My Notes
 
 Run app  
-`nx serve todos`
+`nx serve todos`  
 
 Run e2e tests  
-`nx e2e todos-e2e --watch`
+`nx e2e todos-e2e --watch`  
 
 Install Express  
-`npm install --save-dev @nrwl/express`
+`npm install --save-dev @nrwl/express`  
 
 Create Express app  
-`nx g @nrwl/express:app api --frontendProject=todos`
+`nx g @nrwl/express:app api --frontendProject=todos`  
 
 Create a Shared Lib workspace  
-`nx g @nrwl/workspace:lib data`
+`nx g @nrwl/workspace:lib data`  
 
 Create Shared UI Lib with many components  
 Lib: `nx g @nrwl/react:lib ui`  
-Component: `nx g @nrwl/react:component todos --project=ui --export`
+Component: `nx g @nrwl/react:component todos --project=ui --export`  
+
+Dep Graph  
+An Nx workspace can contain dozens or hundreds of applications and libraries. As a codebase grows, it can be difficult to understand how they depend on each other and the implications of making a particular change.  
+`nx dep-graph`  
+
+`Dep graph started at http://127.0.0.1:4211`  
+
