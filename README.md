@@ -111,3 +111,6 @@ Create Express app
 Create a Shared Lib workspace  
 `nx g @nrwl/workspace:lib data`
 
+Create Shared UI Lib with many components  
+Lib: `nx g @nrwl/react:lib ui`  
+Component: `nx g @nrwl/react:component todos --project=ui --export`
