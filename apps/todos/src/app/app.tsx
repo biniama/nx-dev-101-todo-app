@@ -1,23 +1,25 @@
-import React, { useState } from 'react';
-
-interface Todo {
-  title: string;
-}
+import React, { useEffect, useState } from 'react';
+import { Todo } from '@myorg/data';
 
 export const App = () => {
 
-  const [todos, setTodos] = useState<Todo[]>([
-    { title: 'Todo 1' },
-    { title: 'Todo 2' }
-  ]);
+  const [todos, setTodos] = useState<Todo[]>([]);
+
+  useEffect(() => {
+    fetch('/api/todos')
+      .then((_) => _.json())
+      .then(setTodos)
+  }, [])
 
   function addTodo() {
-    setTodos([
-      ...todos,
-      {
-        title: `New Todo ${Math.floor(Math.random() * 1000)}`
-      },
-    ])
+    fetch('/api/todos', {
+      method: 'POST',
+      body: ''
+    })
+      .then((_) => _.json())
+      .then((newTodo) => {
+        setTodos([...todos, newTodo])
+      });
   }
 
   return (

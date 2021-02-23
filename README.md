@@ -101,3 +101,13 @@ Run app
 
 Run e2e tests  
 `nx e2e todos-e2e --watch`
+
+Install Express  
+`npm install --save-dev @nrwl/express`
+
+Create Express app  
+`nx g @nrwl/express:app api --frontendProject=todos`
+
+Create a Shared Lib workspace  
+`nx g @nrwl/workspace:lib data`
+
