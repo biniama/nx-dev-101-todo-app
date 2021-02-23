@@ -1,4 +1,12 @@
 
+# Summary
+In this tutorial, I:
+- Built a full stack application using React and Express
+- Shared code between the frontend and the backend
+- Created a UI library
+- Used Nx dep graph capabilities to only retest and rebuild what is affected
+
+<p align="center"><img src="running-app.png"></p>
 
 # Myorg
 
@@ -95,29 +103,51 @@ Visit [Nx Cloud](https://nx.app/) to learn more.
 
 
 # My Notes
+#### Create a New Workspace  
+`npx create-nx-workspace@latest`  
 
-Run app  
+#### Install the NX CLI globally by running:  
+`npm install -g nx`  
+
+#### Run app  
 `nx serve todos`  
 
-Run e2e tests  
+#### Run e2e tests  
 `nx e2e todos-e2e --watch`  
 
-Install Express  
+#### Install Express  
 `npm install --save-dev @nrwl/express`  
 
-Create Express app  
+#### Create Express app  
 `nx g @nrwl/express:app api --frontendProject=todos`  
 
-Create a Shared Lib workspace  
+#### Create a Shared Lib workspace  
 `nx g @nrwl/workspace:lib data`  
 
-Create Shared UI Lib with many components  
+#### Create Shared UI Lib with many components  
 Lib: `nx g @nrwl/react:lib ui`  
 Component: `nx g @nrwl/react:component todos --project=ui --export`  
 
-Dep Graph  
+#### Dep Graph  
 An Nx workspace can contain dozens or hundreds of applications and libraries. As a codebase grows, it can be difficult to understand how they depend on each other and the implications of making a particular change.  
 `nx dep-graph`  
 
 `Dep graph started at http://127.0.0.1:4211`  
 
+#### Building Multiple Projects  
+`nx run-many --target=build --projects=todos,api`  
+
+#### Run projects with Dependencies  
+As we saw already, Nx is smart, so it knows how applications and libraries in the workspace depend on each other.
+
+Run `nx lint todos --with-deps`, and you see that Nx lints both the todos app and the libraries it depends on.  
+
+#### Test Affected Projects  
+Printing the affected projects  
+`nx affected:apps` and `nx affected:lib`  
+Test everything that has been affected.  
+`nx affected:test`  
+
+You can run any target against the affected projects in the graph like this:  
+`nx affected --target=build`  
+`nx affected:build`
